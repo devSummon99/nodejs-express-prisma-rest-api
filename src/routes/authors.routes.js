@@ -5,8 +5,8 @@ import { PrismaClient } from "@prisma/client";
 const router = Router();
 const prisma = new PrismaClient();
 
-router.get("/authors", (req, res) => {
-  const authors = prisma.author.findMany();
+router.get("/authors", async(req, res) => {
+  const authors = await prisma.author.findMany();
  
     return (authors > 0) ?  res.json(authors) : res.json("Error 404");
 });
@@ -14,8 +14,9 @@ router.get("/authors", (req, res) => {
 router.post("/authors", async (req, res) => {
   const newAuthor = await prisma.author.create({
     data: req.body,
- })
-  res.json(newAuthor);
+  });
+  return res.json(newAuthor);
+   
 });
 
 
