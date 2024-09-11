@@ -10,14 +10,14 @@ import {
 
 const router = Router();
 
-router.get("/Books", getBooks);
+router.get("/books", getBooks);
 
-router.get("/Books/:id", getBookByID);
+router.get("/books/:id", getBookByID);
 
-router.post("/Books", createBook);
+router.post("books", createBook);
 
-router.put("/Books/:id", updateBookByID);
+router.put("/books/:id", updateBookByID);
 
-router.delete("/Books/:id", deleteBookByID);
+router.delete("/books/:id", deleteBookByID);
 
 export default router;
