@@ -29,3 +29,13 @@ model Author {
    name String @unique
    books Book[]
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String @unique
+  password String 
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
