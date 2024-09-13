@@ -23,7 +23,7 @@ export const getRoleByID = async (req, res) => {
 
 export const createRole = async (req, res) => {
   const data = req.body;
-  const role = await prisma.role.findFirst({ where: { title: data.title } });
+  const role = await prisma.role.findFirst({ where: { name: data.name } });
 
   return role
     ? res.json("El rol ya existe")

@@ -23,7 +23,7 @@ export const getUserByID = async (req, res) => {
 
 export const createUser = async (req, res) => {
   const data = req.body;
-  const user = await prisma.user.findFirst({ where: { title: data.title } });
+  const user = await prisma.user.findFirst({ where: { email: data.email } });
 
   return user
     ? res.json("El usuario ya existe")
