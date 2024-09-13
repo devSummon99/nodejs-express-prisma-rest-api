@@ -7,3 +7,5 @@ const router = Router();
 router.post("/auth/login", Login)
 
 router.post("/auth/register", Register)
+
+export default router;

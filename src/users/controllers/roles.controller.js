@@ -22,15 +22,10 @@ export const getRoleByID = async (req, res) => {
 };
 
 export const createRole = async (req, res) => {
-  const data = req.body;
-  const role = await prisma.role.findFirst({ where: { name: data.name } });
-
-  return role
-    ? res.json("El rol ya existe")
-    : (await prisma.role.create({
+  return (await prisma.role.create({
         data: req.body,
-      })) && res.json(req.body);
-};
+      })) && res.json(req.body)
+}
 
 export const updateRoleByID = async (req, res) => {
   const id = parseInt(req.params.id);
