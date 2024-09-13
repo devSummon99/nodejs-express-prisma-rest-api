@@ -37,5 +37,13 @@ model User {
   password String 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+  roles Role []
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String @unique
+  userID Int 
+  user User @relation(fields: [userID], references: [id])
 }
 

@@ -1,4 +1,4 @@
-import { prisma } from "../db.js";
+import { prisma } from "../../db.js";
 
 export const Login = async (req,res)  => {
     await "Hello"
