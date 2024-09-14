@@ -14,36 +14,34 @@ datasource db {
 }
 
 model Book {
-  id Int @id @default(autoincrement())
-  title String @unique
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
   description String
-  price Int @default(99) 
-  author Author @relation(fields: [authorID], references: [id])
-  authorID Int
-  stock Int @default(0)
-  createAt DateTime @default(now())
+  price       Int      @default(99)
+  author      Author   @relation(fields: [authorID], references: [id])
+  authorID    Int     
+  stock       Int      @default(0)
+  createAt    DateTime @default(now())
 }
 
 model Author {
-   id Int @id @default(autoincrement())
-   name String @unique
-   books Book[]
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  books Book[]
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  username String @unique
-  email String @unique
-  password String 
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  email    String   @unique
+  password String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
-  roles Role []
+  roles Role @default(USER)
+  roleID   Int
 }
 
-model Role {
-  id Int @id @default(autoincrement())
-  name String 
-  userID Int 
-  user User @relation(fields: [userID], references: [id])
+enum Role {
+  USER
+  ADMIN
 }
-
