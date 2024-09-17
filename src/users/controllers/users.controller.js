@@ -8,7 +8,7 @@ export const getUsers = async (req, res) => {
 
   return users.length > 0
     ? res.json(users)
-    : res.json("No existe ningun usuario") ;
+    : res.json("No existe ningun usuario");
 };
 
 export const getUserByID = async (req, res) => {
@@ -40,7 +40,7 @@ export const createUser = async (req, res) => {
 
 export const updateUserByID = async (req, res) => {
   const id = parseInt(req.params.id);
-  const data = req.body;
+  const { username, password, email } = req.body;
   const userFound = await prisma.user.findFirst({
     where: {
       id: id,
@@ -52,8 +52,11 @@ export const updateUserByID = async (req, res) => {
         where: {
           id: id,
         },
-        data: data,
-        password: hashSync(data.password,10),
+        data: {
+          username,
+          email,
+          password: hashSync(password, 10),
+        },
       })) && res.status(203).json("El usuario se ha modificado con éxito")
     : res.status(404).json("El usuario buscado no existe");
 };
@@ -73,4 +76,3 @@ export const deleteUserByID = async (req, res) => {
       })) && res.status(203).json("El usuario se ha eliminado correctamente")
     : res.status(404).json("El usuario buscado no existe");
 };
-
