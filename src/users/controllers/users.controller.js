@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
         data: {
           username,
           email,
-          password: hashSync(password),
+          password: hashSync(password, 10),
         },
       })) && res.json(req.body);
 };
@@ -53,7 +53,7 @@ export const updateUserByID = async (req, res) => {
           id: id,
         },
         data: data,
-        password: hashSync(data.password),
+        password: hashSync(data.password,10),
       })) && res.status(203).json("El usuario se ha modificado con éxito")
     : res.status(404).json("El usuario buscado no existe");
 };
