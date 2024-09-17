@@ -38,7 +38,6 @@ model User {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   roles Role @default(USER)
-  roleID   Int
 }
 
 enum Role {
