@@ -20,5 +20,8 @@ export const Register = async (req, res) => {
       password: hashSync(password, 10),
     },
   });
-  res.json(user);
+  const token = jwt.sign({id:user.id},process.env.JWT_SECRET,{
+    expiresIn:86400 //24 hours
+  } )
+  res.status(200).json(user + {token});
 };
