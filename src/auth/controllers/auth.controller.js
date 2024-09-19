@@ -6,29 +6,40 @@ import { errorCodes } from "../../exceptions/root.js";
 
 const { hashSync, compareSync } = bcrypt;
 
-export const Login = async (req, res) => {
+export const Login = async (req, res, next) => {
   const { password, email } = req.body;
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (!user) {
-    throw Error("El usuario no existe");
+    next(
+      new BadRequestsException("El usuario no existe"),
+      errorCodes.USER_NOT_FOUND
+    );
   }
   if (!compareSync(password, user.password)) {
-    throw Error("Contraseña incorrecta");
+    next(
+      new BadRequestsException("Contraseña incorrecta"),
+      errorCodes.INCORRECT_PASSWORD
+    );
   }
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: 86400, //24 hours
   });
-  res.status(200).json({user, token, message: "Ha entrado correctamente"});
-  console.log(token)
+  res.status(200).json({ user, token, message: "Ha entrado correctamente" });
+  console.log(token);
 };
 
-export const Register = async (req, res) => {
+export const Register = async (req, res, next) => {
   const { username, password, email } = req.body;
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (user) {
-    throw  BadRequestsException("El usuario ya existe",errorCodes.USER_ALREADY_EXISTS);
+    next(
+      new BadRequestsException(
+        "El usuario ya existe",
+        errorCodes.USER_ALREADY_EXISTS
+      )
+    );
   }
   user = await prisma.user.create({
     data: {
@@ -37,6 +48,6 @@ export const Register = async (req, res) => {
       password: hashSync(password, 10),
     },
   });
-  
-  res.status(200).json({user, message: "Se ha registrado correctamente"});
+
+  res.status(200).json({ user, message: "Se ha registrado correctamente" });
 };
