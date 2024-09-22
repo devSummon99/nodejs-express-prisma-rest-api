@@ -29,8 +29,7 @@ export const Register = async (req, res, next) => {
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (user) {
-    new Error("El usuario ya existe");
-    res.status(400);
+    return res.status(400).json({message: "El usario  ya existe"})
   }
   user = await prisma.user.create({
     data: {
