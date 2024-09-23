@@ -4,8 +4,8 @@ export const getBooks = async (req, res) => {
   const books = await prisma.book.findMany();
 
   return books.length > 0
-    ? res.json(books)
-    : res.json("No existe ningun libro");
+    ? res.status(200).json(books)
+    : res.status(400).json({message:"No existe ningun libro"});
 };
 
 export const getBookByID = async (req, res) => {
@@ -17,8 +17,8 @@ export const getBookByID = async (req, res) => {
   });
 
   return bookFound
-    ? res.json(bookFound)
-    : res.json("El libro buscado no existe");
+    ? res.status(200).json(bookFound)
+    : res.status(400).json({message:"El libro buscado no existe"});
 };
 
 export const createBook = async (req, res) => {
@@ -26,10 +26,10 @@ export const createBook = async (req, res) => {
   const book = await prisma.book.findFirst({ where: { title: data.title } });
 
   return book
-    ? res.json("El libro ya existe")
+    ? res.status(400).json({message:"El libro ya existe"})
     : (await prisma.book.create({
         data: req.body,
-      })) && res.json(req.body);
+      })) && res.status(201).json(req.body);
 };
 
 export const updateBookByID = async (req, res) => {
@@ -47,8 +47,8 @@ export const updateBookByID = async (req, res) => {
           id: id,
         },
         data: data,
-      })) && res.status(203).json("El libro se ha modificado con éxito")
-    : res.status(404).json("El libro buscado no existe");
+      })) && res.status(200).json({message:"El libro se ha modificado con éxito"})
+    : res.status(400).json({message:"El libro buscado no existe"});
 };
 
 export const deleteBookByID = async (req, res) => {
@@ -63,6 +63,6 @@ export const deleteBookByID = async (req, res) => {
         where: {
           id: id,
         },
-      })) && res.status(203).json("El libro se ha eliminado correctamente")
-    : res.status(404).json("El libro buscado no existe");
+      })) && res.status(200).json({message:"El libro se ha eliminado correctamente"})
+    : res.status(400).json({message:"El libro buscado no existe"});
 };

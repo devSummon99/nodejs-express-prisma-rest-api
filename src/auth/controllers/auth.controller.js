@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const { hashSync, compareSync } = bcrypt;
 
-export const Login = async (req, res, next ) => {
+export const Login = async (req, res ) => {
   const { password, email } = req.body;
   let user = await prisma.user.findFirst({ where: { email: email } });
 
@@ -12,7 +12,7 @@ export const Login = async (req, res, next ) => {
   return res.status(400).json({message: "El usario no existe"})
   }
   if (!compareSync(password, user.password)) {
-    return res.status(400).json({message: "Contraseña incorrecta"})
+    return res.status(401).json({message: "Contraseña incorrecta"})
   }
   else {
     const  token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -24,7 +24,7 @@ export const Login = async (req, res, next ) => {
   
 };
 
-export const Register = async (req, res, next) => {
+export const Register = async (req, res) => {
   const { username, password, email } = req.body;
   let user = await prisma.user.findFirst({ where: { email: email } });
 
@@ -39,5 +39,5 @@ export const Register = async (req, res, next) => {
     },
   });
 
-  res.status(200).json({ user, message: "Se ha registrado correctamente" });
+  res.status(201).json({ user, message: "Se ha registrado correctamente" });
 };

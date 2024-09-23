@@ -7,8 +7,8 @@ export const getUsers = async (req, res) => {
   const users = await prisma.user.findMany();
 
   return users.length > 0
-    ? res.json(users)
-    : res.json("No existe ningun usuario");
+    ? res.status(200).json(users)
+    : res.status(400).json({message:"No existe ningun usuario"});
 };
 
 export const getUserByID = async (req, res) => {
@@ -20,22 +20,22 @@ export const getUserByID = async (req, res) => {
   });
 
   return userFound
-    ? res.json(userFound)
-    : res.json("El usuario buscado no existe");
+    ? res.status(200).json(userFound)
+    : res.status(400).json({message:"El usuario buscado no existe"});
 };
 
 export const createUser = async (req, res) => {
   const { username, password, email } = req.body;
   const user = await prisma.user.findFirst({ where: { email: email } });
   return user
-    ? res.json("El usuario ya existe")
+    ? res.status(400).json({message:"El usuario ya existe"})
     : (await prisma.user.create({
         data: {
           username,
           email,
           password: hashSync(password, 10),
         },
-      })) && res.json(req.body);
+      })) && res.status(201).json(req.body);
 };
 
 export const updateUserByID = async (req, res) => {
@@ -57,8 +57,8 @@ export const updateUserByID = async (req, res) => {
           email,
           password: hashSync(password, 10),
         },
-      })) && res.status(203).json("El usuario se ha modificado con éxito")
-    : res.status(404).json("El usuario buscado no existe");
+      })) && res.status(200).json({message:"El usuario se ha modificado con éxito"})
+    : res.status(400).json({message:"El usuario buscado no existe"});
 };
 
 export const deleteUserByID = async (req, res) => {
@@ -73,6 +73,6 @@ export const deleteUserByID = async (req, res) => {
         where: {
           id: id,
         },
-      })) && res.status(203).json("El usuario se ha eliminado correctamente")
-    : res.status(404).json("El usuario buscado no existe");
+      })) && res.status(201).json({message:"El usuario se ha eliminado correctamente"})
+    : res.status(400).json({message:"El usuario buscado no existe"});
 };
