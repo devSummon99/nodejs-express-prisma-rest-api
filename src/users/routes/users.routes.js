@@ -7,6 +7,7 @@ import {
   updateUserByID,
   deleteUserByID,
 } from "../controllers/users.controller.js";
+import { authMiddleware, adminMiddleware } from "../../middlewares/index.js";
 
 const router = Router();
 
@@ -14,10 +15,10 @@ router.get("/users", getUsers);
 
 router.get("/users/:id", getUserByID);
 
-router.post("/users", createUser);
+router.post("/users",adminMiddleware, authMiddleware, createUser);
 
-router.put("/users/:id", updateUserByID);
+router.put("/users/:id", authMiddleware, updateUserByID);
 
-router.delete("/users/:id", deleteUserByID);
+router.delete("/users/:id",adminMiddleware, authMiddleware, deleteUserByID);
 
 export default router;

@@ -5,7 +5,7 @@ export const getBooks = async (req, res) => {
 
   return books.length > 0
     ? res.status(200).json(books)
-    : res.status(400).json({message:"No existe ningun libro"});
+    : res.status(404).json({message:"No existe ningun libro"});
 };
 
 export const getBookByID = async (req, res) => {
@@ -18,7 +18,7 @@ export const getBookByID = async (req, res) => {
 
   return bookFound
     ? res.status(200).json(bookFound)
-    : res.status(400).json({message:"El libro buscado no existe"});
+    : res.status(404).json({message:"El libro buscado no existe"});
 };
 
 export const createBook = async (req, res) => {
@@ -48,7 +48,7 @@ export const updateBookByID = async (req, res) => {
         },
         data: data,
       })) && res.status(200).json({message:"El libro se ha modificado con éxito"})
-    : res.status(400).json({message:"El libro buscado no existe"});
+    : res.status(404).json({message:"El libro buscado no existe"});
 };
 
 export const deleteBookByID = async (req, res) => {
@@ -64,5 +64,5 @@ export const deleteBookByID = async (req, res) => {
           id: id,
         },
       })) && res.status(200).json({message:"El libro se ha eliminado correctamente"})
-    : res.status(400).json({message:"El libro buscado no existe"});
+    : res.status(404).json({message:"El libro buscado no existe"});
 };

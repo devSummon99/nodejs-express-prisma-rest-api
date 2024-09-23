@@ -9,7 +9,7 @@ export const Login = async (req, res ) => {
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (!user) {
-  return res.status(400).json({message: "El usario no existe"})
+  return res.status(404).json({message: "El usario no existe"})
   }
   if (!compareSync(password, user.password)) {
     return res.status(401).json({message: "Contraseña incorrecta"})
@@ -19,7 +19,6 @@ export const Login = async (req, res ) => {
       expiresIn: 86400, //24 hours
     });
     res.status(200).json({ user, token, message: "Ha entrado correctamente" });
-    console.log(token);
   }
   
 };
