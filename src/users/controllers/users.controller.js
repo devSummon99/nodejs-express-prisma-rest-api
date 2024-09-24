@@ -40,7 +40,7 @@ export const createUser = async (req, res) => {
 
 export const updateUserByID = async (req, res) => {
   const id = parseInt(req.params.id);
-  const { username, password, email } = req.body;
+  const { username, password, email, roles } = req.body;
   const userFound = await prisma.user.findFirst({
     where: {
       id: id,
@@ -56,6 +56,7 @@ export const updateUserByID = async (req, res) => {
           username,
           email,
           password: hashSync(password, 10),
+          roles
         },
       })) && res.status(200).json({message:"El usuario se ha modificado con éxito"})
     : res.status(404).json({message:"El usuario buscado no existe"});
