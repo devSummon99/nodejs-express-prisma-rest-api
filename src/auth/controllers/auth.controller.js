@@ -9,10 +9,10 @@ export const Login = async (req, res ) => {
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (!user) {
-  return res.status(404).json({message: "El usario no existe"})
+  return res.status(404).json({message: "El usario no existe"});
   }
   if (!compareSync(password, user.password)) {
-    return res.status(401).json({message: "Contraseña incorrecta"})
+    return res.status(401).json({message: "Contraseña incorrecta"});
   }
   else {
     const  token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -28,7 +28,7 @@ export const Register = async (req, res) => {
   let user = await prisma.user.findFirst({ where: { email: email } });
 
   if (user) {
-    return res.status(400).json({message: "El usario  ya existe"})
+    return res.status(400).json({message: "El usario  ya existe"});
   }
   user = await prisma.user.create({
     data: {

@@ -13,7 +13,7 @@ export const adminMiddleware = async (req, res, next) => {
             },
         });
         if (!user) {
-            return res.status(404).json({ message: "El usario no existe" })
+            return res.status(404).json({ message: "El usario no existe" });
         }
         req.user = user;
         console.log(user.role)
@@ -23,7 +23,7 @@ export const adminMiddleware = async (req, res, next) => {
             return res.status(401).json({ message: "No Autorizado" });
         }
     } catch (error) {
-        return res.status(401).json({ message: "No autorizado" })
+        return res.status(401).json({ message: "No autorizado" });
     }
 
 }
