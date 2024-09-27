@@ -1,9 +1,11 @@
 import express from "express";
+import morgan from "morgan";
+
 import authorsRoutes from "./bookstore/routes/authors.routes.js"
 import booksRoutes from "./bookstore/routes/books.routes.js";
 import authRoutes from "./auth/routes/auth.routes.js";
 import usersRoutes from "./users/routes/users.routes.js";
-import morgan from "morgan";
+
 export const app = express();
 
 app.use(express.json());
