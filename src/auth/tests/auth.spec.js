@@ -1,5 +1,7 @@
-import app from "../../app.js"
-import request from "supertest"
+import app from "../../app.js";
+import request from "supertest";
+
+import generarPalabrasAleatorias from "../../utils/words.js";
 
 describe("POST /api-books/auth/login", () => {
 
@@ -50,9 +52,11 @@ describe("POST /api-books/auth/register", () => {
     })
 
     test("should response registration successfully", async () => {
+
+        const palabrasAleatorias = generarPalabrasAleatorias(1);
         const response = await request(app).post("/api-books/auth/register").send({
-            username: "pablo2",
-            email: "pab22@cuba.cu",
+            username: `${palabrasAleatorias}`,
+            email: `${palabrasAleatorias}23@gmail.com`,
             password: "72658466"
         })
         expect(response.statusCode).toBe(201) && expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
