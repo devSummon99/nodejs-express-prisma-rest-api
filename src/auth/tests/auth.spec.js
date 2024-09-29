@@ -2,27 +2,60 @@ import app from "../../app.js"
 import request from "supertest"
 
 describe("POST /api-books/auth/login", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+
+    test("should response that the user does not exist", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            username: "miusuariodeprueba",
+            email: "miusuariodeprueba@gmail.com",
+            password: "12345678"
+        })
+        expect(response.statusCode).toBe(404) && expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+    })
+
+    test("should response that the password is incorrect", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "raulito88@gmail.com",
+            password: "87465123",
+        })
+        expect(response.statusCode).toBe(401) && expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+    })
 })
 
+test("should response status code 200", async () => {
+    const response = await request(app).post("/api-books/auth/login").send({
+        email: "pedroperez31@cuba.cu",
+        password: "72658466",
+    })
+    expect(response.statusCode).toBe(200);
+})
+
+test("should response with a JSON", async () => {
+    const response = await request(app).post("/api-books/auth/login").send({
+        email: "pedroperez31@cuba.cu",
+        password: "72658466",
+    })
+    expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+})
+
+
 describe("POST /api-books/auth/register", () => {
-    //si el usuario ya existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+
+    test("should response that the user exist", async () => {
+        const response = await request(app).post("/api-books/auth/register").send({
+            username: "pedroperezllanes",
+            email: "pedroperez31@cuba.cu",
+            password: "72658466"
+        })
+        expect(response.statusCode).toBe(400) && expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+    })
+
+    test("should response registration successfully", async () => {
+        const response = await request(app).post("/api-books/auth/register").send({
+            username: "pablo2",
+            email: "pab22@cuba.cu",
+            password: "72658466"
+        })
+        expect(response.statusCode).toBe(201) && expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+    })
+
 })
