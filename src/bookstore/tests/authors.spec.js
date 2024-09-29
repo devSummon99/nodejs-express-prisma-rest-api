@@ -1,66 +1,51 @@
 import app from "../../app.js"
 
 describe("GET /api-books/authors", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+    test("should response status code 200", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "pedroperez31@cuba.cu",
+            password: "72658466",
+        })
+        expect(response.statusCode).toBe(200);
+    })
 })
 
 describe("GET /api-books/authors/:id", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+    test("should response status code 200", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "pedroperez31@cuba.cu",
+            password: "72658466",
+        })
+        expect(response.statusCode).toBe(200);
+    })
 })
 
 describe("POST /api-books/authors", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+    test("should response status code 200", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "pedroperez31@cuba.cu",
+            password: "72658466",
+        })
+        expect(response.statusCode).toBe(200);
+    })
 })
 
 describe("PUT /api-books/authors/:id", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+    test("should response status code 200", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "pedroperez31@cuba.cu",
+            password: "72658466",
+        })
+        expect(response.statusCode).toBe(200);
+    })
 })
 
 describe("DELETE /api-books/authors/:id", () => {
-    //si el usuario no existe
-    test()
-    //si la contraseña es incorrecta
-    test()
-    //codigo de estado 200 
-    test()
-    //codigo de estado 400 
-    test()
-    //retorne un JSON
-    test()
+    test("should response status code 200", async () => {
+        const response = await request(app).post("/api-books/auth/login").send({
+            email: "pedroperez31@cuba.cu",
+            password: "72658466",
+        })
+        expect(response.statusCode).toBe(200);
+    })
 })
