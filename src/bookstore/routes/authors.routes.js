@@ -15,10 +15,10 @@ router.get("/authors", getAuthors);
 
 router.get("/authors/:id", getAuthorByID);
 
-router.post("/authors", createAuthor);
+router.post("/authors",adminMiddleware, createAuthor);
 
-router.put("/authors/:id", updateAuthorByID);
+router.put("/authors/:id",adminMiddleware, updateAuthorByID);
 
-router.delete("/authors/:id", deleteAuthorByID);
+router.delete("/authors/:id",adminMiddleware, deleteAuthorByID);
 
 export default router;
