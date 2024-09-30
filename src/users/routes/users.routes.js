@@ -15,7 +15,7 @@ const router = Router();
  * @openapi
  * @swagger
  * components:
- * schemas:
+ *  schemas:
  *   User:
  *     type: object
  *     properties:
@@ -43,7 +43,7 @@ const router = Router();
  *     required:
  *       - username
  *       - email 
- *      - password    
+ *       - password    
  *     example:     
  *      username:pedro
  *      email:pedro@gmail.com
