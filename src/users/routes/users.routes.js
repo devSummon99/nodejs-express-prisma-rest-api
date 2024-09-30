@@ -10,7 +10,9 @@ import {
 import { authMiddleware, adminMiddleware } from "../../middlewares/index.js";
 
 const router = Router();
-
+/**
+ * @openapi
+ */
 router.get("/users", getUsers);
 
 router.get("/users/:id", getUserByID);

@@ -3,10 +3,10 @@ import request from "supertest";
 
 import generarPalabrasAleatorias from "../../utils/words.js";
 
-describe("POST /api-books/auth/login", () => {
+describe("POST /api-books/v1/auth/login", () => {
 
     test("should response that the user does not exist", async () => {
-        const response = await request(app).post("/api-books/auth/login").send({
+        const response = await request(app).post("/api-books/v1/auth/login").send({
             username: "miusuariodeprueba",
             email: "miusuariodeprueba@gmail.com",
             password: "12345678"
@@ -15,7 +15,7 @@ describe("POST /api-books/auth/login", () => {
     })
 
     test("should response that the password is incorrect", async () => {
-        const response = await request(app).post("/api-books/auth/login").send({
+        const response = await request(app).post("/api-books/v1/auth/login").send({
             email: "raulito88@gmail.com",
             password: "87465123",
         })
@@ -24,7 +24,7 @@ describe("POST /api-books/auth/login", () => {
 })
 
 test("should response status code 200", async () => {
-    const response = await request(app).post("/api-books/auth/login").send({
+    const response = await request(app).post("/api-books/v1/auth/login").send({
         email: "pedroperez31@cuba.cu",
         password: "72658466",
     })
@@ -32,7 +32,7 @@ test("should response status code 200", async () => {
 })
 
 test("should response with a JSON", async () => {
-    const response = await request(app).post("/api-books/auth/login").send({
+    const response = await request(app).post("/api-books/v1/auth/login").send({
         email: "pedroperez31@cuba.cu",
         password: "72658466",
     })
@@ -40,10 +40,10 @@ test("should response with a JSON", async () => {
 })
 
 
-describe("POST /api-books/auth/register", () => {
+describe("POST /api-books/v1/auth/register", () => {
 
     test("should response that the user exist", async () => {
-        const response = await request(app).post("/api-books/auth/register").send({
+        const response = await request(app).post("/api-books/v1/auth/register").send({
             username: "pedroperezllanes",
             email: "pedroperez31@cuba.cu",
             password: "72658466"
@@ -54,7 +54,7 @@ describe("POST /api-books/auth/register", () => {
     test("should response registration successfully", async () => {
 
         const palabrasAleatorias = generarPalabrasAleatorias(1);
-        const response = await request(app).post("/api-books/auth/register").send({
+        const response = await request(app).post("/api-books/v1/auth/register").send({
             username: `${palabrasAleatorias}`,
             email: `${palabrasAleatorias}23@gmail.com`,
             password: "72658466"
