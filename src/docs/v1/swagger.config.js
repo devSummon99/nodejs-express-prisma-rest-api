@@ -7,15 +7,15 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: "http://localhost:3000/api-books/v1/",
             }
         ],
     },
     apis: [
-        ".src/auth/routes/auth.routes.js",
-        ".src/bookstore/routes/authors.routes.js",
-        ".src/bookstore/routes/books.routes.js", 
-        ".src/users/routes/users.routes.js"
+        "src/auth/routes/auth.routes.js",
+        "src/bookstore/routes/authors.routes.js",
+        "src/bookstore/routes/books.routes.js", 
+        "src/users/routes/users.routes.js"
     ],
 };
 

@@ -1,0 +1,140 @@
+openapi: "3.0.3"
+info:
+  title: My first REST-API for a bookstore
+  version: "1.0"
+servers:
+  - url: http://localhost:3000/api-books/v1/
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+         id:
+          type: integer
+          example: 123
+         username:
+          type: string
+          example: pablo
+         email:
+          type: string
+          example: pablo@gmail.com
+         password: 
+          type: string
+          example: sadsasdasd123
+         roles: 
+          type: string
+          example: USER
+      required:
+        - email
+        - password
+    Author:
+      type: object
+      properties:
+         id:
+          type: integer
+          example: 123
+         name:
+          type: string
+          example: pablo
+         books: 
+          type: array
+          example: ["libro1", "libro2"]
+      required:
+          - name
+    Book:
+      type: object
+      properties:
+         id:
+          type: integer
+          example: 123
+         title:
+          type: string
+          example: la edad de oro
+         description:
+          type: string
+          example: aaa
+         price: 
+          type: integer
+          example: 999
+         Author: 
+          type: object
+          example: { name: pascual }
+         authorID:
+          type: integer
+          example: 123
+         stock: 
+          type: integer
+          example: 200
+      required:
+        - title
+        - description
+        - authorID
+         
+paths:
+  /users:
+    get:
+      responses:
+        "200":
+          description: OK
+
+    post:
+     responses:
+        "200":
+          description: OK
+
+  /users/:id:
+    get:
+      responses:
+        "200":
+          description: OK
+
+    put:
+      responses:
+        "200":
+          description: OK
+
+    delete:
+      responses:
+        "200":
+          description: OK
+
+  /auth/login:
+    post:
+      responses:
+        "200":
+          description: OK
+
+  /auth/register:
+    post:
+      responses:
+        "200":
+          description: OK
+
+  /authors:
+    get:
+      responses:
+        "200":
+          description: OK
+
+    post:
+      responses:
+        "200":
+          description: OK
+
+  /authors/:id:
+    get:
+      responses:
+        "200":
+          description: OK
+
+    put:
+      responses:
+        "200":
+          description: OK
+
+    delete:
+      responses:
+        "200":
+          description: OK
+  

@@ -1,10 +1,10 @@
-import { prisma } from "../../db.js";
+import { prisma } from "../../db.config.js.js";
 import bcrypt from "bcryptjs";
 
 const { hashSync, compareSync } = bcrypt;
 
 export const getUsers = async (req, res) => {
-  const users = await prisma.user.findMany();d
+  const users = await prisma.user.findMany();
 
   return users.length > 0
     ? res.status(200).json(users)
