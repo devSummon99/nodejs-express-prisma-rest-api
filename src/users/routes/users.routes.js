@@ -93,6 +93,8 @@ router.post("/users", adminMiddleware, authMiddleware, createUser);
  *      tags:
  *       - Users
  *      summary: Add user
+ *      security:
+ *           - bearerAuth: []
  *      description: Add user
  *      requestBody:
  *          description: A JSON object containing user information
@@ -124,6 +126,8 @@ router.put("/users/:id", authMiddleware, updateUserByID);
  *     tags:
  *       - Users
  *     summary: Edit user
+ *     security:
+ *           - bearerAuth: []
  *     description: Edit user
  *     requestBody:
  *         description: A JSON object containing user information
@@ -151,6 +155,7 @@ router.put("/users/:id", authMiddleware, updateUserByID);
  *         description: No Found
  *      500:
  *         description: Internal Server Error
+
  */
 
 router.delete("/users/:id", adminMiddleware, authMiddleware, deleteUserByID);
@@ -163,6 +168,8 @@ router.delete("/users/:id", adminMiddleware, authMiddleware, deleteUserByID);
  *     tags:
  *       - Users
  *     summary: Delete user
+ *     security:
+ *           - bearerAuth: []
  *     description: Delete user
  *     parameters:
  *       - in: path

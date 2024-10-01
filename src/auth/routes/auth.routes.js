@@ -8,10 +8,12 @@ const router = Router();
 * @swagger
 * components:
 *  securitySchemes:
-*   BearerAuth:
-*     type: http
-*     scheme: bearer
-*     bearerFormat: 'JWT'
+*   BearerAuth: 
+*           type: http
+*           scheme: bearer
+*           bearerFormat: 'JWT'
+* security: 
+    bearerAuth: []
 */
 
 router.post("/auth/login", Login);
@@ -31,8 +33,8 @@ router.post("/auth/login", Login);
  *                 schema:
  *                    $ref: '#/components/schemas/User'
  *                 example:
- *                    email: aaaa@gmail.com
- *                    password: as11212
+ *                    email: rm2333@cu.cu
+ *                    password: "72658466"
  *      responses:
  *           201:
  *            description: Created
@@ -42,8 +44,6 @@ router.post("/auth/login", Login);
  *            description: No Found
  *           500:
  *            description: Internal Server Error
- *      security:
- *           bearerAuth: []
  */
 
 router.post("/auth/register", Register);

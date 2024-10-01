@@ -100,6 +100,8 @@ router.post("/books", adminMiddleware, createBook);
  *      tags:
  *       - Books
  *      summary: Add book
+ *      security:
+ *           - bearerAuth: []
  *      description: Add book
  *      requestBody:
  *          description: A JSON object containing book information
@@ -131,6 +133,8 @@ router.put("/books/:id", adminMiddleware, updateBookByID);
  *     tags:
  *       - Books
  *     summary: Edit book
+ *     security:
+ *           - bearerAuth: []
  *     description: Edit book
  *     requestBody:
  *         description: A JSON object containing book information
@@ -169,6 +173,8 @@ router.delete("/books/:id", adminMiddleware, deleteBookByID);
  *     tags:
  *       - Books
  *     summary: Delete book
+ *     security:
+ *           - bearerAuth: []
  *     description: Delete book
  *     parameters:
  *       - in: path

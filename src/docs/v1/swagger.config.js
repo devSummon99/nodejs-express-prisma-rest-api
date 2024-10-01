@@ -14,9 +14,12 @@ const options = {
     apis: [
         "src/auth/routes/auth.routes.js",
         "src/bookstore/routes/authors.routes.js",
-        "src/bookstore/routes/books.routes.js", 
+        "src/bookstore/routes/books.routes.js",
         "src/users/routes/users.routes.js"
     ],
+    swaggerOptions: {
+        persistAuthorization: true,
+    },
 };
 
 export default options;

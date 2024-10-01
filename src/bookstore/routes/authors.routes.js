@@ -84,6 +84,8 @@ router.post("/authors",adminMiddleware, createAuthor);
  *      tags:
  *       - Author
  *      summary: Add author
+ *      security:
+ *           - bearerAuth: [] 
  *      description: Add author
  *      requestBody:
  *          description: A JSON object containing author information
@@ -113,6 +115,8 @@ router.put("/authors/:id",adminMiddleware, updateAuthorByID);
  *     tags:
  *       - Author
  *     summary: Edit author
+ *     security:
+ *           - bearerAuth: [] 
  *     description: Edit author
  *     requestBody:
  *         description: A JSON object containing author information
@@ -148,7 +152,9 @@ router.delete("/authors/:id",adminMiddleware, deleteAuthorByID);
  *  delete:
  *     tags:
  *       - Author
- *     summary: Delete author 
+ *     summary: Delete author
+ *     security:
+ *           - bearerAuth: [] 
  *     description: Delete author 
  *     parameters:
  *       - in: path
